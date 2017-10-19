@@ -1,0 +1,102 @@
+﻿<html class="gr__localhost">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="CSS%20style%20sheet%20(2).css">
+    <script type="text/javascript" src="assignment5.js"></script>
+    <title>Record Store</title>
+</head>
+<body onload="document.getElementById('myForm').elements[0].focus();" data-gr-c-s-loaded="true">
+    <header>
+        <br/><br/>
+        <h1>Welcome to La Gozadera!</h1>
+        <h2>Music for the best of gauchos.</h2>
+        <ul>
+            <li><a class="active" href="assign05.html">Home</a></li>
+            <li><a href="assign05.html">Buy</a></li>
+        </ul>
+    </header>
+    <br/><br/><br/>
+    <form id="myForm" action="assign10.php" method="GET" onsubmit="return validate()">
+        <div style="color:black;background-color: rgb(127, 127, 255);width:90%;padding:50px;">
+            <h3>Account Information</h3>First Name <br/>
+            <input class="input"type="text" name="First Name" placeholder="John">
+            <br/><div class="error">Please fill out your first name</div><br/>Last Name <br/>
+            <input class="input"type="text" name="Last Name" placeholder="Doe"><br/>
+            <div class="error">Please fill out your last name</div>
+            <br/>Address <br/>
+            <textarea class="input" name="Address" style="background-color:LightGoldenRodYellow;" placeholder="Street Address, City, State, Zip Code" rows="4" cols="50"></textarea>
+            <br/><div class="error">Please fill out your address</div>
+            <br/>Phone Number
+            <br/><input class="input"type="text" id="phone" name="Phone" placeholder="999-999-9999" onblur="tstphonenum()">
+            <br/>
+            <br/>
+            <br/><div class="error">Please fill out your phone number</div><br/><h3>Billing Information</h3>
+            <br/>Credit Card Type <br/>
+            <input type="radio" name="Credit Card Type" value="Visa">Visa<br/>
+            <input type="radio" name="Credit Card Type" value="Mastercard">Mastercard<br/>
+            <input type="radio" name="Credit Card Type" value="American Express">American Express<br/>
+            <div class="error">Please fill out your Credit Card type</div>
+            <br/>Credit Card Number <br/>
+            <input class="input"type="text" id="creditcard" name="Credit Card Number" onblur="tstcreditcard()" placeholder="9999999999999999" maxlength="16">
+            <br/><div class="error">Please fill out your Credit Card number</div>
+            <br/>
+            Expiration Date <br/>
+            <input class="input"type="text" id="creditcardexpirationdate" name="Credit Card Expiration Date" placeholder="MM/YYYY" onblur="tstcreditcarddate()"><br/>
+            <div class="error">Please fill out your Credit Card expiration date</div>
+            <h3>Your Total:</h3><h3 id="total">$30.00</h3>
+            <input type="reset" id="reset" onclick="resetAndFocus()" style="background-color:white;">
+            <input type="submit" id="submit" style="background-color:white;">
+        </div><br/>
+        <div style="color:black;background-color: rgba(127, 127, 127, 0.5);width:70%;text-align:left;padding:50px;overflow:hidden;">
+            Please fill out your account and billing information.
+            Then add albums to your cart by checking
+            their respective checkboxes. Hover over an album to see pricing and
+            availability.
+        </div>
+        <br/>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="albuminfo">
+                            In Stock! Price: $5.00<div style="color:black;font-size:30%;background-color:rgba(255,255,255,0.5);">
+                                <input type="checkbox" value="Alejandro Fernandez" onclick="checkout()" name="cart[]">Check here to add to cart.
+                            </div>
+                        </div><img class="album" src="images/Alejandrofernandez.jpg" style="box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 0px 15px;">
+                    </td>
+                    <td>
+                        <div class="albuminfo">
+                            In Stock! Price: $5.00<div style="color:black;font-size:30%;background-color:rgba(255,255,255,0.5);">
+                                <input type="checkbox" value="Alejandro Sanz" onclick="checkout()" name="cart[]">Check here to add to cart.
+                            </div>
+                        </div><img class="album" src="images/alejandrosanz.jpg" style="box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 0px 15px;">
+                    </td>
+                    <td>
+                        <div class="albuminfo">
+                            In Stock! Price: $5.00<div style="color:black;font-size:30%;background-color:rgba(255,255,255,0.5);">
+                                <input type="checkbox" value="Almafuerte" onclick="checkout()" name="cart[]">Check here to add to cart.
+                            </div>
+                        </div><img class="album" src="images/almafuerte.jpg" style="box-shadow: rgba(255, 0, 0, 0.5) 0px 0px 0px 15px;">
+                    </td>
+                    <td>
+                        <div class="albuminfo">
+                            In Stock! Price: $5.00<div style="color:black;font-size:30%;background-color:rgba(255,255,255,0.5);">
+                                <input type="checkbox" value="Andres Cepeda" onclick="checkout()" name="cart[]">Check here to add to cart.
+                            </div>
+                        </div><img class="album" src="images/andrescepeda.jpg" style="box-shadow: rgba(255, 0, 0, 0.5) 0px 0px 0px 15px;">
+                    </td>
+                    <td>
+                        <div class="albuminfo">
+                            In Stock! Price: $5.00<div style="color:black;font-size:30%;background-color:rgba(255,255,255,0.5);">
+                                <input type="checkbox" value="Axel" onclick="checkout()" name="cart[]">Check here to add to cart.
+                            </div>
+                        </div><img class="album" src="images/axel.jpg" style="box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 0px 15px;">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </form>
+<span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span>
+</body>
+</html>

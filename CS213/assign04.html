@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"> 
+        <title>Morgage Calculator</title>
+        <link rel="stylesheet" type="text/css" href=CSS%20style%20sheet%20(1).css />
+        <script type="text/javascript" src="mortgagecalculator.js">
+        </script>
+    </head>
+    <body style="border:solid white 100px; background-image:none;" onload = document.getElementById("apr").focus();>
+        <h1>Welcome to mortgage calculator</h1>
+        <br/><br/>
+        <form id = "myForm" action = "" onreset=document.getElementById("apr").focus();>
+            <input type="text" name="APR" id="apr" onchange = "validate(1)" placeholder="Type APR Here"/>
+            <input type="text" name="Loan Term" id="term" onchange = "validate(1)" placeholder="Type the Loan Term Here"/>
+            <input type="text" name="Ammount" id="ammount" onchange = "validate(1)" placeholder="Type the Amount Here"/>
+            <input type="text" name="mp" id="mp" disabled/> <br/> <br/>
+            <input type="reset" />
+            <input type="button" value="Calculate Monthly Payment" 
+                   id="calculateMonthlyPayment" onclick = "validate(2)"/>
+        </form>
+        <p id="monthlyPayment"></p>
+    </body>
+</html>

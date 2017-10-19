@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+            <meta charset="utf-8">    
+        <link rel="shortcut icon" type="image/x-icon" href="me.jpg" />
+        <link rel="stylesheet" type="text/css" href="assign09.css" />
+        <script>
+            function validate() {
+                var x = document.getElementsByClassName("error");
+                for (var i = 0; i < document.getElementById("myForm").length; i++) {
+                    if (document.getElementById("myForm").elements[i].value == "") {
+                        x[i].style.visibility = "visible";
+                        document.getElementById("myForm").elements[i].focus();
+                        return false;
+                    }
+                    else {
+                        x[i].style.visibility = "hidden";
+                    }
+                }
+                return true;
+            }
+        </script>
+        <title>cgi Mortgage Calculator</title>
+    </head>
+    
+    <body onload=document.getElementById("apr").focus();>
+        <h1>Calculate Your Monthly Payment</h1>
+        <form id="myForm" action="http://localhost/cgi-bin/cha16004/a.out" method="get" 
+              onreset='document.getElementById("apr").focus();' onsubmit='return validate();'>
+            <h3>APR</h3><div class="error">Please fill out the APR</div>
+            <input type="text" name="apr" id="apr" onchange="validate();"/>
+            <h3>Term</h3><div class="error">Please fill out the Term</div>
+            <input type="text" name="term" id="term" onchange="validate();"/>
+            <h3>Ammount</h3><div class="error">Please fill out the Ammount</div>
+            <input type="text" name="ammount" id="ammount" onchange="validate();"/><br/><br/>
+            <input type="submit" name="calculateMonthlyPayment" value="Calculate Monthly Payment"
+                   id="calculateMonthlyPayment" />
+        </form>
+        <a href="http://157.201.194.254/~jeremyc2/assign09.php" >assign09.php</a>
+        <a href="http://157.201.194.254/~jeremyc2/mortgage.html">mortgage.html</a>
+    </body>
+</html>
