@@ -1,0 +1,14 @@
+        .affix {
+            top: 0;
+            width: 100%;
+            z-index: 9999 !important;
+        }
+
+        body
+        {
+            background-color:  darkblue;
+            padding-top: 15px;
+        }
+        .caption{
+            text-align: center;
+        }
