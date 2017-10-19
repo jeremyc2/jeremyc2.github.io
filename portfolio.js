@@ -1,6 +1,8 @@
 
         $(document).ready(function () {
-            $('nav').affix({ offset: { top: 20 } });
+            if($('body').height() > 1000)
+                $('nav').affix({ offset: { top: 20} });
+            $("nav").css({ 'width': ($(".well").outerWidth() + 'px') });
             $(".screenshot").css({ 'width': ($(".screenshot:first").width() + 'px'), height: ($(".screenshot:first").width() + 'px' )});
             $("nav").on('affix.bs.affix', function () {
                 document.getElementById("title").innerHTML = "Jeremy Chandler";
