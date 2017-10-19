@@ -12,8 +12,7 @@
         .caption{
             text-align: center;
         }
-
-.affix-bottom
+.nav-wrapper
 {
-    position: relative;
+    min-height:50px;
 }
