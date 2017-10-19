@@ -15,5 +15,5 @@
 
 .affix-bottom
 {
-    position: fixed;
+    position: relative;
 }
