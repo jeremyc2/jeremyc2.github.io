@@ -12,3 +12,8 @@
         .caption{
             text-align: center;
         }
+
+.affix-bottom
+{
+    position: fixed;
+}
