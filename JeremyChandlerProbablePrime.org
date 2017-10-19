@@ -1,0 +1,148 @@
+
+
+PROBABLE PRIME ASSIGNMENT
+
+* Introduction
+This report includes several sections:
+
+The first one is a random number generator which
+uses Fermat's Theorem.
+
+The second finds the probability that the test succeeds
+given any integer in the range.
+
+The third is the probability that Fermat's Little Theorem passes
+given a non prime integer.
+
+The forth uses Moore's law to calculate the probability that
+the probable prime generated in the first section is actually not prime.
+
+
+RANGES:
+
+The range for the probable prime number we will be generating will be 
+between 2 and 1,000,002.
+
+The range for a in Fermat's Little Theorem will be
+between 0 and 1,000,000.
+
+The number of tests will be 10,000 every time.
+
+
+* Randomly Generate Prime Number
+#+BEGIN_SRC emacs-lisp
+(require 'calc)
+(require 'calc-ext) ;calc-eval
+(defun randomNumberGenerator ()
+   (setq p (+ 2 (random 1000000)))
+   (setq i 0)
+   (while (< i 10000) ; We want it to pass fermat's Little Theorem this many times 
+      (setq a (random 1000000)) ;with different a values
+      (setq ans (math-pow-mod a p p)) ;Fermat's Little Theorem
+      (if (eq ans (mod a p)) 
+         (setq i (1+ i)) ;if passes test increment i
+        (progn (setq p (+ 2 (random 1000000)))(setq i 0)) ;if fails pick new p and reset i
+      )
+   )
+   p
+)
+(randomNumberGenerator)
+#+END_SRC
+
+#+RESULTS:
+: 26801
+
+
+#+END_SRC
+
+* Probability that Fermat's Little Threorem Succeeds given any integer in the range
+#+BEGIN_SRC emacs-lisp
+(require 'calc)
+(require 'calc-ext) ;calc-eval
+(defun reset()
+   (setq i 0)
+   (setq successes 0)
+)
+(defun anyInteger () 
+   (reset)
+   (while (< i 10000) ; We want it to pass fermat's theorem this many times 
+      (setq a (random 1000000)) ;with different a values     
+      (setq p (+ 2 (random 1000000)))     
+      (setq ans (math-pow-mod a p p)) ;Fermat's Little Theorem
+      (if (eq ans (mod a p))
+            (setq successes (1+ successes)) ;if passes test update variable
+                                            ;to the reflect the success
+      )
+      (setq i (1+ i))
+   )
+   (setq successes (/ (+ successes 0.00) 10000)) ;calculate probability
+)
+(anyInteger)
+#+END_SRC
+
+#+RESULTS:
+: 0.0806
+* Probability that a given integer P that is NOT prime passes Fermat's Primality Test 
+
+
+#+BEGIN_SRC emacs-lisp
+(require 'calc)
+(require 'calc-ext) ;calc-eval
+(defun reset()
+   (setq i 0)
+   (setq nonprime 0)
+)
+(defun nonprimetest () 
+   (reset)
+   (while (< i 10000) ; We want it to pass Fermat's Little Theorem this many times 
+      (setq a (random 1000000)) ;with different a values     
+      (setq p (* (+ (random 499999) 2) 2)) ;max number is 1,000,000     
+      (setq ans (math-pow-mod a p p)) ;Fermat's Little Theorem
+      (if (eq ans (mod a p))
+            (setq nonprime (1+ nonprime)) ;if passes test increment variable to
+                                          ;reflect the success
+      )
+      (setq i (1+ i))
+   )
+    (setq nonprime (/ (+ nonprime 0.00) 10000)) ;calculate probability
+    nonprime
+)
+(nonprimetest)
+
+
+
+#+END_SRC
+
+#+RESULTS:
+: 0.0003
+
+* Probability that generated probable prime is NOT prime
+#+BEGIN_SRC emacs-lisp 
+
+(defun Bays() ;Use Bay's Law to calculate probability
+              ; Note: You must execute the previous 2 code
+              ; blocks for this to work 
+   (/ (* 0.078498 nonprime) successes)
+)   
+(setq probAgivenBisTrue (Bays))
+(setq pOfC (expt probAgivenBisTrue 10000)) ; P(C) it's too small for emacs-lisp to calculate
+                                           ; without truncating so I did this by hand.
+ probAgivenBisTrue    ; P(A|B)          
+
+#+END_SRC
+
+#+RESULTS:
+: 0.0002921761786600496
+
+
+* Conclusion 
+The probability that the probable prime generated in section
+one is not actually prime is 1.842588052018×10^-35406%.
+
+P(A)   = 0.078498 (From the Book)
+P(B)   = 0.0806 (From Section 2)
+P(B|A) = 0.0003 (From Section 3)
+P(A|B) = 0.0002921761786600496 (Results of Bays function as part of Section 4)
+P(C)   = 1.842588052018 * 10^ (-35408) (Also from section 4)
+
+
