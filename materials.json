@@ -1,12 +1,1 @@
-{
-  "name" : "Wood"
-}
-{
-    "name" : "Glass"
-}
-{
-    "name" : "Marble"
-}
-{
-    "name" : "Mirror"
-}
+[{"name": "Glass"}, {"name": "Marble"}, {"name": "Mirror"}]
